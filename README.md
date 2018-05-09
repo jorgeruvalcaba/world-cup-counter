@@ -1,31 +1,25 @@
-# world-cup-counter
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>World Cup Counter</title>
-<p id="exercise"></p>
-
+<span>World Cup will start in:</span>
+<p id="counterTimer"></p>
 <script>
-var WCDate = new Date("Jun 14, 2018 10:00:00").getTime();
-var x = setInterval(function() {
-
-var today= new Date().getTime();
-
-var lapse = WCDate - today;
-
-  var days = Math.floor(lapse / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((lapse % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((lapse % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((lapse % (1000 * 60)) / 1000);
-
-  document.getElementById("exercise").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  if (lapse < 0) {
-    clearInterval(x);
-    document.getElementById("exercise").innerHTML = "World Cup Began!!";
-  }
+  var countDownDate = new Date("Jun 14, 2018 10:00:00").getTime();
+  var toRefresh = setInterval(
+  function() {  
+  var currentTime = new Date().getTime(); 
+  var refresh = countDownDate - currentTime; 
+  var d = Math.floor(refresh / (1000 * 60 * 60 * 24));
+  var h = Math.floor((refresh % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var m = Math.floor((refresh % (1000 * 60 * 60)) / (1000 * 60));
+  var s = Math.floor((refresh % (1000 * 60)) / 1000);
+  document.getElementById("counterTimer").innerHTML = d + "d " + h + "h " + m + "m " + s + "s ";
+	  if (refresh < 0) {
+	    clearInterval(toRefresh);
+	    document.getElementById("counterTimer").innerHTML = "World Cup began!!";
+	  }
 }, 1000);
 </script>
 </head>
